@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+@WebMvcTest(newStuffController.class)
 public class NewStuffControllerTest {
     
     @Autowired
@@ -27,11 +28,11 @@ public class NewStuffControllerTest {
 
     @BeforeEach
     public void setUp() {
-        newStuffController.init();
+        // Initialize any required setup for the tests
     }
 
     @Test
-    public void testGetCar() throws Exception {
+    void testGetCar() throws Exception {
         mockMvc.perform(get("/car/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
@@ -39,7 +40,7 @@ public class NewStuffControllerTest {
     }
 
     @Test
-    public void testCreateCar() throws Exception {
+    void testCreateCar() throws Exception {
         Cars car = new Cars(4, "Honda Civic");
         mockMvc.perform(post("/car")
                 .contentType("application/json")
@@ -53,7 +54,7 @@ public class NewStuffControllerTest {
     }
 
     @Test
-    public void testUpdateCar() throws Exception {
+    void testUpdateCar() throws Exception {
         Cars car = new Cars(2, "Suzuki Swift");
         mockMvc.perform(put("/car/2")
                 .contentType("application/json")
@@ -67,7 +68,7 @@ public class NewStuffControllerTest {
     }
 
     @Test
-    public void testDeleteCar() throws Exception {
+    void testDeleteCar() throws Exception {
         mockMvc.perform(delete("/car/3"))
                 .andExpect(status().isOk());
 
