@@ -22,11 +22,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// added as dependencies for testing newStuffController
-	testImplementation 'com.fasterxml.jackson.core:jackson-databind'
-    testImplementation 'org.springframework.boot:spring-boot-starter-json'
-    testImplementation 'org.mockito:mockito-core'
-    testImplementation 'org.mockito:mockito-junit-jupiter'
+	
 }
 
 tasks.named('test') {
@@ -35,7 +31,6 @@ tasks.named('test') {
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
-	useJUnitPlatform() // Use JUnit Platform for running tests
 }
 
 jacocoTestReport {
